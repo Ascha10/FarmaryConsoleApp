@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace FarmaryConsoleApp
 {
-     class Schedule
+    class Schedule
     {
         public int numberOfWeeks;
         public int dayInWeeks;
-        public static void DiaryPatient(int numOfWeeks,int numOfDays)
+        public static void DiaryPatient(int numOfWeeks, int numOfDays)
         {
 
             int[,] twoDimensionalArray = new int[numOfWeeks, numOfDays];

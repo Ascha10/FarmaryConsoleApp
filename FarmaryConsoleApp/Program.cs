@@ -70,8 +70,8 @@ void AddDoctor()
     Console.WriteLine($"{newDoctor.firstName} {newDoctor.lastName} {newDoctor.role} {newDoctor.patients} {newDoctor.dateOfBirth}");
     doctors.Add(newDoctor);
 
-    FileStream doctorFileObject = new FileStream($@"C:\test\Doctors\{newDoctor.firstName}.txt",FileMode.Append);
-    using(StreamWriter writeToFile = new StreamWriter(doctorFileObject))
+    FileStream doctorFileObject = new FileStream($@"C:\test\Doctors\{newDoctor.firstName}.txt", FileMode.Append);
+    using (StreamWriter writeToFile = new StreamWriter(doctorFileObject))
     {
         writeToFile.WriteLine($"{newDoctor.firstName} {newDoctor.lastName} {newDoctor.role} {newDoctor.patients} {newDoctor.dateOfBirth}");
     }
@@ -121,7 +121,32 @@ void AddPatientToDoctor(string nameOfDoctor)
         }
         Console.WriteLine($"{doctor.firstName} {doctor.lastName} {doctor.role} {doctor.patients} {doctor.dateOfBirth}");
     }
+
+    string[] arrayOfString;
+    FileStream FileObject = new FileStream($@"C:\test\Doctors\{nameOfDoctor}.txt", FileMode.Open);
+    using (StreamReader readFileDoctor = new StreamReader(FileObject))
+    {
+        arrayOfString = readFileDoctor.ReadLine().Split(" ");
+        Console.WriteLine(arrayOfString[3]);
+    }
+
+    FileStream DoctorsFile = new FileStream($@"C:\test\Doctors\{nameOfDoctor}.txt", FileMode.Create);
+    using (StreamWriter writeToDoctor = new StreamWriter(DoctorsFile))
+    {
+        for (int i = 0; i < arrayOfString.Length; i++)
+        {
+            if (i == 3) writeToDoctor.Write($"{int.Parse(arrayOfString[3]) + 1} ");
+            else writeToDoctor.Write($"{arrayOfString[i]} ");
+        }
+    }
 }
+
+
+
+
+
+
+
 
 
 
